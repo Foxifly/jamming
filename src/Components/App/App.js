@@ -27,6 +27,7 @@ class App extends Component {
       ]
     };
     this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
   }
   addTrack(track) {
     if (
@@ -38,6 +39,13 @@ class App extends Component {
       currentTracks.push(track);
       this.setState({ playlistTracks: currentTracks });
     }
+  }
+  removeTrack(track) {
+    this.setState({
+      playlistTracks: this.state.playlistTracks.filter(
+        savedTrack => savedTrack.id !== track.id
+      )
+    });
   }
   render() {
     return (
@@ -53,6 +61,7 @@ class App extends Component {
             onAdd={this.addTrack}
           />
           <Playlist
+            onRemove={this.removeTrack}
             playlistName={this.state.playlistName}
             playlistTracks={this.state.playlistTracks}
           />
