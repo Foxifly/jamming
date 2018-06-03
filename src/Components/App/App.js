@@ -11,9 +11,9 @@ class App extends Component {
     this.state = {
       searchResults: [
         {
-          name: "hello",
-          artist: "hello",
-          album: "hello",
+          name: this.props.track.name,
+          artist: this.props.track.artist,
+          album: this.props.track.album,
           id: 1
         }
       ]
