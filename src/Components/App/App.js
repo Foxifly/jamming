@@ -10,24 +10,39 @@ class App extends Component {
     this.state = {
       searchResults: [
         {
-          name: "test",
-          artist: "test",
-          album: "test",
+          name: "Track 1",
+          artist: "Track 1 Artist",
+          album: "Track 1 Album",
           id: 1
+        },
+        {
+          name: "Track 2",
+          artist: "Track 2 Artist",
+          album: "Track 2 Album",
+          id: 2
+        },
+        {
+          name: "Track 3",
+          artist: "Track 3 Artist",
+          album: "Track 3 Album",
+          id: 3
         }
       ],
       playlistName: "Playlist Time",
       playlistTracks: [
         {
-          name: "test2",
-          artist: "test2",
-          album: "test2",
-          id: 1
+          name: "Playlist Track",
+          artist: "Playlist Track Artist",
+          album: "Playlist Track Album",
+          id: 4
         }
       ]
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
+    this.updatePlaylistName = this.updatePlaylistName.bind(this);
+    this.savePlaylist = this.savePlaylist.bind(this);
+    this.serach = this.search.bind(this);
   }
   addTrack(track) {
     if (
@@ -47,24 +62,40 @@ class App extends Component {
       )
     });
   }
+  updatePlaylistName(name) {
+    this.setState({
+      playlistName: name
+    });
+  }
+  savePlaylist() {
+    const trackURIs = this.state.playlistTracks.map(playlistTrack => {
+      playlistTrack.uri;
+    });
+  }
+  search(term) {
+    console.log(term);
+  }
   render() {
     return (
       <div>
         <h1>
-          Ja <span className="highlight"> mmm </span>ing{" "}
+          Ja<span class="highlight">mmm</span>ing
         </h1>
-        <div className="App">
-          <SearchBar />
-          <div className="App-playlist" />
-          <SearchResults
-            searchResult={this.state.searchResults}
-            onAdd={this.addTrack}
-          />
-          <Playlist
-            onRemove={this.removeTrack}
-            playlistName={this.state.playlistName}
-            playlistTracks={this.state.playlistTracks}
-          />
+        <div class="App">
+          <SearchBar onSearch={this.search} />
+          <div class="App-playlist">
+            <SearchResults
+              searchResult={this.state.searchResults}
+              onAdd={this.addTrack}
+            />
+            <Playlist
+              onSave={this.savePlaylist}
+              onNameChange={this.updatePlaylistName}
+              onRemove={this.removeTrack}
+              playlistName={this.state.playlistName}
+              playlistTracks={this.state.playlistTracks}
+            />
+          </div>
         </div>
       </div>
     );
