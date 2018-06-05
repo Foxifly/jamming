@@ -39,7 +39,7 @@ const Spotify = {
               name: currentTrack.name,
               artist: currentTrack.artists[0].name,
               album: currentTrack.album.name,
-              uri: currentTrack.url
+              uri: currentTrack.uri
             };
           });
         }
