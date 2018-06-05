@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
 import SearchBar from "../SearchBar/SearchBar";
+import Spotify from "../../util/Spotify";
 // import logo from './logo.svg'; // <img src={logo} className="App-logo" alt="logo" />
 import "./App.css";
 class App extends Component {
@@ -74,16 +75,20 @@ class App extends Component {
   }
   search(term) {
     console.log(term);
+    Spotify.search(term).then(tracks => {
+      console.log(tracks);
+      this.setState({ searchResults: tracks });
+    });
   }
   render() {
     return (
       <div>
         <h1>
-          Ja<span class="highlight">mmm</span>ing
+          Ja<span className="highlight">mmm</span>ing
         </h1>
-        <div class="App">
+        <div className="App">
           <SearchBar onSearch={this.search} />
-          <div class="App-playlist">
+          <div className="App-playlist">
             <SearchResults
               searchResult={this.state.searchResults}
               onAdd={this.addTrack}
