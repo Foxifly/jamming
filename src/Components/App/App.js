@@ -9,27 +9,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [
-        {
-          name: "Track 1",
-          artist: "Track 1 Artist",
-          album: "Track 1 Album",
-          id: 1
-        },
-        {
-          name: "Track 2",
-          artist: "Track 2 Artist",
-          album: "Track 2 Album",
-          id: 2
-        },
-        {
-          name: "Track 3",
-          artist: "Track 3 Artist",
-          album: "Track 3 Album",
-          id: 3
-        }
-      ],
-      playlistName: "Playlist Time",
+      searchResults: [],
+      playlistName: "My Playlist",
       playlistTracks: [
         {
           name: "Playlist Track",
@@ -43,7 +24,7 @@ class App extends Component {
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
-    this.serach = this.search.bind(this);
+    this.search = this.search.bind(this);
   }
   addTrack(track) {
     if (
@@ -71,6 +52,9 @@ class App extends Component {
   savePlaylist() {
     const trackURIs = this.state.playlistTracks.map(playlistTrack => {
       playlistTrack.uri;
+    });
+    Spotify.savePlaylist(this.state.playlistName, trackURIs).then(() => {
+      this.setState({ playlistName: "My Playlist", playlistTracks: [] });
     });
   }
   search(term) {
