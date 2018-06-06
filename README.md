@@ -1,4 +1,5 @@
 # Codecademy Jammming Project
+### Lindsay Ciastko
 
 ## Table of Contents
 
