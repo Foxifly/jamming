@@ -1,5 +1,5 @@
 const clientID = "e153d153cd2f4747904a340281fe87ac";
-const redirectURI = "http://localhost:3000/";
+const redirectURI = "https://foxifly.github.io/jamming/";
 let userAccessToken = "";
 const Spotify = {
   getAccessToken() {
